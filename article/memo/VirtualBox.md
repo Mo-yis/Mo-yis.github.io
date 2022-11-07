@@ -51,7 +51,7 @@ $ sudo VBoxManage internalcommands createrawvmdk -filename ~/VirtualBox\ VMs/USB
 4. 设置虚拟磁盘 USB.vmdk 的组和权限为自己:
 
 ```bash
-$ sudo chown $(whoami) ~/VirtualBox\ VMs/USB.vmdk && sudo chgrp $(whoami) ~/VirtualBox\ VMs/USB.vmdk
+$ sudo chown $USER ~/VirtualBox\ VMs/USB.vmdk && sudo chgrp $USER ~/VirtualBox\ VMs/USB.vmdk
 ```
 
 - USB.vmdk 默认组和权限是 root, 需要修改为自己使用 VirtualBox 时可访问的权限.

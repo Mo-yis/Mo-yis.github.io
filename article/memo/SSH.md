@@ -52,23 +52,26 @@ $ cat ~/.ssh/id_rsa.pub
 
 
 
-
-
 # 配置多个 SSH Key
 
 1. 执行以下命令, 删除旧代理:
-```
+
+```bash
 $ ssh-add -D && ssh-add -l
 ```
 
 2. 按需要新建多个 SSH Key (以 `com` 和 `net` 为例):
-```
+
+```bash
 $ ssh-keygen -t rsa -C "example@example.com" -f ~/.ssh/com
 $ ssh-keygen -t rsa -C "example@example.net" -f ~/.ssh/net
 ```
 
+- 参数 `-f` 用于指定 Key 的名称, 默认为 `id_rsa`.
+
 3. 编辑 `~/.ssh/config` 添加以下内容:
-```
+
+```bash
 Host com
     HostName        github.com
     User            git
@@ -81,8 +84,6 @@ Host net
     IdentityFile    ~/.ssh/net
     ProxyCommand    ncat --proxy 127.0.0.1:1089 --proxy-type socks5 %h %p
 ```
-- 参数 `-f` 用于指定 Key 的名称, 默认为 `id_rsa`.
-
 
 
 
@@ -92,12 +93,14 @@ Host net
 # 测试 SSH 连接
 
 - 测试远程服务器连通性 (服务器以 github.com 为例, 用户为 git):
-```
+
+```bash
 $ ssh -T git@github.com
 ```
 
 - 若有多个 SSH Key, 需按对应主机别名测试 (以 `com` 和 `net` 为例):
-```
+
+```bash
 $ ssh -T git@com
 $ ssh -T git@net
 ```
