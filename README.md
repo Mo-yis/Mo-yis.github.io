@@ -24,7 +24,7 @@ description: 学习总是永无止境的
 - [Ubuntu20 个人配置](/article/memo/Ubuntu20.md)
 - [Vim 个人配置](/article/memo/Vim.md)
 - [VirtualBox 个人配置](/article/memo/VirtualBox.md)
-- [Windows10 备忘](/article/memo/Windows10_Memo.md)
+- [Windows10 备忘](/article/memo/Windows10.md)
 
 
 # 计划
