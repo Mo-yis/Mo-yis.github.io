@@ -75,7 +75,7 @@ $ sudo usermod -aG vboxusers $USER
 $ cat /etc/group | grep vboxusers
 ```
 
-## 安装 PowerLine
+## 安装 PowerLine ghostwriter
 
 ```
 $ sudo dnf install powerline
@@ -126,3 +126,10 @@ $ reboot
 ```
 $ flatpak install flathub org.gabmus.hydrapaper
 ```
+
+# 安装 ghostwriter
+
+```
+$ sudo dnf install ghostwriter
+```
+
