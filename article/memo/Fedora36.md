@@ -54,10 +54,10 @@ $ sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
 
 # 安装常用软件
 
-## 安装 VLC 和 OBS
+## 安装 VLC OBS PowerLine TorBrowser Clash npm
 
 ```bash
-$ sudo dnf install vlc obs-studio
+$ sudo dnf install vlc obs-studio powerline torbrowser-launcher clash npm
 ```
 
 ## 安装 VirtualBox
@@ -75,11 +75,6 @@ $ sudo usermod -aG vboxusers $USER
 $ cat /etc/group | grep vboxusers
 ```
 
-## 安装 PowerLine ghostwriter
-
-```
-$ sudo dnf install powerline
-```
 
 ## 安装 Obsidian
 
