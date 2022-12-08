@@ -54,10 +54,10 @@ $ sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
 
 # 安装常用软件
 
-## 安装 VLC OBS PowerLine TorBrowser Clash npm
+## 安装 VLC OBS PowerLine TorBrowser Clash npm Yarn Java
 
 ```bash
-$ sudo dnf install vlc obs-studio powerline torbrowser-launcher clash npm
+$ sudo dnf install vlc obs-studio powerline torbrowser-launcher clash npm yarnpkg java-17-openjdk-devel
 ```
 
 ## 安装 VirtualBox
