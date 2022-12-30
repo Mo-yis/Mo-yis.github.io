@@ -3,30 +3,30 @@ layout: posts
 title: Aria2 个人配置
 ---
 
+- 配置文件默认保存在 `~/.aria2/aria2.conf`
 
 ```bash
-# aria2 配置文件保存位置:~/.aria2/aria2.conf
 
-
-
-
-
-## 文件保存设置 ##
+####    文件保存设置    ####
 
 
 # 磁盘缓存, 0 为禁用缓存，默认:16M
 # 磁盘缓存的作用是把下载的数据块临时存储在内存中，然后集中写入硬盘，以减少磁盘 I/O
 # 建议在有足够的内存空闲情况下适当增加，但不要超过剩余可用内存空间大小。
 # 此项值仅决定上限，实际对内存的占用取决于网速(带宽)和设备性能等其它因素。
-disk-cache=128M
+disk-cache=64M
 
-# 文件预分配方式, 可选：none, prealloc, trunc, falloc, 默认:prealloc
-# 预分配对于机械硬盘可有效降低磁盘碎片、提升磁盘读写性能、延长磁盘寿命。
-# 机械硬盘使用 ext4（具有扩展支持），btrfs，xfs 或 NTFS（仅 MinGW 编译版本）等文件系统建议设置为 falloc
-# 若无法下载，提示 fallocate failed.cause：Operation not supported 则说明不支持，请设置为 none
-# prealloc 分配速度慢, trunc 无实际作用，不推荐使用。
-# 固态硬盘不需要预分配，只建议设置为 none ，否则可能会导致双倍文件大小的数据写入，从而影响寿命。
-file-allocation=none
+# 指定文件分配方法。
+# none 不会预先分配文件空间。
+# prealloc 在下载开始之前预先分配文件空间。这可能需要一些时间，具体取决于文件的大小。
+# 如果您使用的是较新的文件系统，例如ext4, btrfs, xfs或NTFS（仅限MinGW构建），falloc是您的最佳选择。它几乎可以立即分配大型（少量 GiB）文件。
+# 不要将falloc用于传统文件系统，如ext3和FAT32，因为它花费的时间几乎与prealloc相同，并且它会完全阻止aria2，直到分配完成。
+# 如果您的系统没有posix_fallocate功能，则 falloc 可能不可用。
+# trunc 使用 ftruncate 系统调用或特定于平台的对应项将文件截断为指定的长度。
+
+# 可用值: none, prealloc, trunc, falloc
+# 默认值: prealloc
+file-allocation=falloc
 
 # 文件预分配大小限制。小于此选项值大小的文件不预分配空间，单位 K 或 M，默认：5M
 no-file-allocation-limit=64M
@@ -51,10 +51,7 @@ force-save=true
 
 
 
-
-
-## 下载连接设置 ##
-
+####    下载连接设置    ####
 
 # 文件未找到重试次数，默认:0 (禁用)
 # 重试时同时会记录重试次数，所以也需要设置 max-tries 这个选项
@@ -95,16 +92,13 @@ content-disposition-default-utf8=true
 
 
 
-
-
-## BT/PT 下载设置 ##
-
+####    BT/PT 下载设置    ####
 
 # IPv4 DHT 网络引导节点
-dht-entry-point=dht.transmissionbt.com:6881
+#dht-entry-point=
 
 # IPv6 DHT 网络引导节点
-dht-entry-point6=dht.transmissionbt.com:6881
+#dht-entry-point6=
 
 # 启用 IPv6 DHT 功能, PT 下载(私有种子)会自动禁用，默认:false
 # 在没有 IPv6 支持的环境开启可能会导致 DHT 功能异常
@@ -143,19 +137,22 @@ bt-require-crypto=true
 bt-min-crypto-level=arc4
 
 
+# 将元数据另存为“.torrent”文件。此选项仅在使用 BitTorrent Magnet URI 时生效。
+# 文件名是十六进制编码的信息哈希，后缀为“.torrent”。
+# 要保存的目录与保存下载文件的目录相同。如果同一文件已存在，则不保存元数据。
+# 另请参阅 --bt-metadata-only 选项。默认值：假
+bt-save-metadata=true
 
 
 
-
-
-## BitTorrent trackers ##
-
+####    BitTorrent trackers    ####
 
 # 更新前需要删除旧tracker
 # 比较有名的bt tracker list有这几个
 # https://trackerslist.com/#/zh
 # https://github.com/ngosang/trackerslist
 # https://newtrackon.com/list
-#bt-tracker=
+# bt-tracker=
 
 ```
+
